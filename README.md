@@ -8,12 +8,14 @@
 
 ### Package installation 
 * via Anaconda [environment.yml] file 
+```ruby
+command: conda env create -f [environment.yml]
+```
 
-command: conda env create -f environment.yml
 
 ### Demonstration
 * The [Jupyter Notebook] can be used for demonstration purposes.
 
 
 [environment.yml]: https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
-[Jupyter Notebook]: henrik3
+[Jupyter Notebook]:
