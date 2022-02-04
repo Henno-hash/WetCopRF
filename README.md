@@ -9,7 +9,7 @@
 ### Package installation 
 * via Anaconda [environment.yml] file
 ```
-command: conda env create -f environment.yml
+conda env create -f environment.yml
 ```
 
 
