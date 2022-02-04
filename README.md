@@ -8,8 +8,10 @@
 
 ### Package installation 
 * via Anaconda [environment.yml] file 
+
 ```ruby
-command: conda env create -f [environment.yml]
+example:
+command: conda env create -f environment.yml
 ```
 
 
