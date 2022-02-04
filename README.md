@@ -7,7 +7,7 @@
 * Automatically evaluates the results in a confusion matrix with helpful numerical-measures and exports the classification results as a map.
 
 ### Package installation 
-* via Anaconda .yml file
+* via Anaconda .yml file [yml File] https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
 
 ### Demonstration
-* The Jupyter Notebook XXX can be used for demonstration purposes.
+* The Jupyter Notebook [Jupyter Notebook]XXX can be used for demonstration purposes.
