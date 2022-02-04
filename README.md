@@ -10,7 +10,7 @@
 * via Anaconda [environment.yml] file 
 
 ### Demonstration
-* The Jupyter Notebook [Jupyter Notebook] can be used for demonstration purposes.
+* The [Jupyter Notebook] can be used for demonstration purposes.
 
 
 [environment.yml]: https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
