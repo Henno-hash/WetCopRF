@@ -210,4 +210,3 @@ dependencies:
   - zstd=1.4.9=h19a0ad4_0
   - pip:
     - numpy==1.22.0
-prefix: C:\Users\Henno\anaconda3\envs\GEO419noerror
