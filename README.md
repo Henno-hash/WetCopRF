@@ -14,4 +14,4 @@
 
 
 [environment.yml]: https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
-[Jupyter Notebook]: henrik2
+[Jupyter Notebook]: henrik3
