@@ -7,8 +7,7 @@
 * Automatically evaluates the results in a confusion matrix with helpful numerical-measures and exports the classification results as a map.
 
 ### Package installation 
-* via Anaconda [environment.yml] file 
-example:
+* via Anaconda [environment.yml] file
 ```
 command: conda env create -f environment.yml
 ```
