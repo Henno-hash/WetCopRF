@@ -721,7 +721,7 @@ def test_train_split(classes, df, folders):
     return df, df_train, df_test
 
 
-def CreateGeoTiff(image_array, outputTif, folders):
+def create_geo_tiff(image_array, outputTif, folders):
     """
     Function to create a GeoTiff-file from an array
 
@@ -984,7 +984,7 @@ def user_multi_parameter(parameter):
     return value_list
 
 
-def RF_grid_validation(x_train, x_test, y_train, y_test, n_depth=[2], n_estimators=[10]):
+def rf_gridsearch_validation(x_train, x_test, y_train, y_test, n_depth=[2], n_estimators=[10]):
     """
     Function to run a grid-search randomforest model
 
@@ -1005,7 +1005,7 @@ def RF_grid_validation(x_train, x_test, y_train, y_test, n_depth=[2], n_estimato
 
     Returns
     -------
-    RandomForest_model: sklearn.model_selection.GridSearchCV
+    randomforest_model: sklearn.model_selection.GridSearchCV
         randomforest classifier
     """
     # Hyperparameter-settings as dict
@@ -1019,21 +1019,21 @@ def RF_grid_validation(x_train, x_test, y_train, y_test, n_depth=[2], n_estimato
     print('Hyperparameters: max_depth:', n_depth,
           ', n_estimators:', n_estimators)
     # Initialise rf-classifier
-    base_model = ensemble.RandomForestClassifier(class_weight='balanced',
+    base_model = ensemble.randomforestClassifier(class_weight='balanced',
                                                  random_state=42)  # Instantiate the grid search model
-    RandomForest_model = GridSearchCV(estimator=base_model,
+    randomforest_model = GridSearchCV(estimator=base_model,
                                       param_grid=param_grid,
                                       cv=10,
                                       n_jobs=-2,
                                       verbose=4)
     pbar = ProgressBar()
     for i in pbar(range(1)):
-        RandomForest_model = RandomForest_model.fit(x_train, y_train.ravel())  # Fit model to train dataset
+        randomforest_model = randomforest_model.fit(x_train, y_train.ravel())  # Fit model to train dataset
 
-    return RandomForest_model
+    return randomforest_model
 
 
-def RF_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], max_depth=[3], num_depth=[1],
+def rf_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], max_depth=[3], num_depth=[1],
                                min_estimators=[100], max_estimators=[150], num_estimators=[2]):
     """
     Function to run a random-search randomforest model
@@ -1063,7 +1063,7 @@ def RF_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], 
 
     Returns
     -------
-    RandomForest_model: sklearn.model_selection.RandomizedSearchCV
+    randomforest_model: sklearn.model_selection.RandomizedSearchCV
         randomforest classifier
     """
 
@@ -1085,8 +1085,8 @@ def RF_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], 
     print('Hyperparameters: max_depth:', max_depth,
           ', n_estimators:', n_estimators)
     # Initialise rf-classifier
-    rf = ensemble.RandomForestClassifier(class_weight='balanced')
-    RandomForest_model = RandomizedSearchCV(estimator=rf,
+    rf = ensemble.randomforestClassifier(class_weight='balanced')
+    randomforest_model = RandomizedSearchCV(estimator=rf,
                                             param_distributions=random_grid,
                                             n_iter=2,
                                             cv=10,
@@ -1095,12 +1095,12 @@ def RF_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], 
                                             n_jobs=-2)
     pbar = ProgressBar()
     for i in pbar(range(1)):
-        RandomForest_model.fit(x_train, y_train.ravel())  # Fit model to train dataset
+        randomforest_model.fit(x_train, y_train.ravel())  # Fit model to train dataset
 
-    return RandomForest_model
+    return randomforest_model
 
 
-def load_RandomForest(folders):
+def load_randomforest(folders):
     """
     Function to load a presaved randomforest model.
 
@@ -1144,13 +1144,13 @@ def load_RandomForest(folders):
     return loaded_rf_model, method_number, rf_folder, rf_model_list
 
 
-def export_RandomForest(RandomForest_model, method_number, folders):
+def export_randomforest(randomforest_model, method_number, folders):
     """
     Function to create a model specific folder and dumb the model.
 
     Parameters
     ----------
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search) to be exported
     method_number: int
         number of validation- hyperparametertuning method (1 = grid-search, 2 = random-search)
@@ -1166,7 +1166,7 @@ def export_RandomForest(RandomForest_model, method_number, folders):
     print('[' + '#' * 45 + '_' * 25 + ']')
     print('Exporting RF_Model...')
     # Extract the hyperparameters
-    best_parameters = RandomForest_model.best_params_
+    best_parameters = randomforest_model.best_params_
     # Transform method_number to method
     validation_method = method_int_to_str(method_number)
     # Create the name of the specific randomforest model
@@ -1177,12 +1177,12 @@ def export_RandomForest(RandomForest_model, method_number, folders):
     shutil.rmtree(rf_folder, ignore_errors=True)
     os.makedirs(rf_folder)
     # Dumb the model and append the folderpath
-    joblib.dump(RandomForest_model, "{}/{}.joblib".format(rf_folder, rf_model_name))
+    joblib.dump(randomforest_model, "{}/{}.joblib".format(rf_folder, rf_model_name))
 
     return rf_folder
 
 
-def predict_image(df, RandomForest_model, color_list, method_number, rf_folder, folders):
+def predict_image(df, randomforest_model, color_list, method_number, rf_folder, folders):
     """
     Function to use the model and predict an image on the full stack (incl. eroded pixels).
 
@@ -1190,7 +1190,7 @@ def predict_image(df, RandomForest_model, color_list, method_number, rf_folder, 
     ----------
     df: pandas.DataFrame
         merged sentinel-1, reference data and pixelcoordinates as a pandas DataFrame, with eroded reference class-pixels, without NaNs
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search)
     color_list: list
         list containing the RGBA-values from reference
@@ -1214,10 +1214,10 @@ def predict_image(df, RandomForest_model, color_list, method_number, rf_folder, 
     # -----------------------------------------------------------------------------
     # Drop all NaN-values in sentinel-1 data
     df_prediction.dropna(subset=df_prediction.columns[4:], axis=0, inplace=True)
-    create_predicted_image(RandomForest_model, df_prediction, df, color_list, method_number, rf_folder, folders, masked=False)
+    create_predicted_image(randomforest_model, df_prediction, df, color_list, method_number, rf_folder, folders, masked=False)
 
 
-def predict_image_masked(df_train, df_test, df, RandomForest_model, color_list, method_number, rf_folder, folders):
+def predict_image_masked(df_train, df_test, df, randomforest_model, color_list, method_number, rf_folder, folders):
     """
     Function to use the model and predict an masked image on the eroded stack (excl. eroded pixels).
 
@@ -1229,7 +1229,7 @@ def predict_image_masked(df_train, df_test, df, RandomForest_model, color_list, 
         test-dataframe containing 20% of df
     df: pandas.DataFrame
         merged sentinel-1, reference data and pixelcoordinates as a pandas DataFrame, with eroded reference class-pixels, without NaNs
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search)
     color_list: list
         list containing the RGBA-values from reference
@@ -1247,16 +1247,16 @@ def predict_image_masked(df_train, df_test, df, RandomForest_model, color_list, 
     # Remerge the train and test-dataset
     frames = [df_train, df_test]
     df_train_test = pd.concat(frames)
-    create_predicted_image(RandomForest_model, df_train_test, df, color_list, method_number, rf_folder, folders, masked=True)
+    create_predicted_image(randomforest_model, df_train_test, df, color_list, method_number, rf_folder, folders, masked=True)
 
 
-def create_predicted_image(RandomForest_model, df_prediction, df, color_list, method_number, rf_folder, folders, masked):
+def create_predicted_image(randomforest_model, df_prediction, df, color_list, method_number, rf_folder, folders, masked):
     """
     Function to create predicted image based on randomforest model with and without eroded pixels.
 
     Parameters
     ----------
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search)
     df_prediction: pandas.DataFrame
         input for predictions, only contains the sentinel-1 values
@@ -1278,11 +1278,11 @@ def create_predicted_image(RandomForest_model, df_prediction, df, color_list, me
 
     """
     # Use the model to predict the image
-    RandomForest_prediction = RandomForest_model.predict(df_prediction.iloc[:, 4:].values)
+    randomforest_prediction = randomforest_model.predict(df_prediction.iloc[:, 4:].values)
     # Extract hyperparameters
-    best_parameters = RandomForest_model.best_params_
+    best_parameters = randomforest_model.best_params_
     # Insert the predicted values to the image-dataframe and transform it to an array
-    df_prediction.insert(4, "classified", RandomForest_prediction)
+    df_prediction.insert(4, "classified", randomforest_prediction)
     df_image = df.merge(df_prediction[['row_col', 'classified']], how='left', on="row_col")
     predicted_image = df_image['classified'].to_numpy()
     row, col = df.iloc[-1]['row_col'].split('_')
@@ -1298,7 +1298,7 @@ def create_predicted_image(RandomForest_model, df_prediction, df, color_list, me
         outputTif = r'{}\class_result_{}_depth_{}_estim_{}.tif'.format(rf_folder, validation_method,
                                                                        best_parameters['max_depth'],
                                                                        best_parameters['n_estimators'])
-    CreateGeoTiff(predicted_image, outputTif, folders)
+    create_geo_tiff(predicted_image, outputTif, folders)
     # Change the default-colors to the same colors as the reference map
     color_change(outputTif, color_list)
     # User information
@@ -1419,7 +1419,7 @@ def model_call(df_train, df_test, classes_label, folders):
 
     Returns
     -------
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search)
     method_number: int
         number of validation- hyperparametertuning method (1 = grid-search, 2 = random-search)
@@ -1451,7 +1451,7 @@ def model_call(df_train, df_test, classes_label, folders):
         use_exist_model = False
 
     if use_exist_model == True:  # Load existing model
-        RandomForest_model, method_number, rf_folder, rf_model_list = load_RandomForest(folders)
+        randomforest_model, method_number, rf_folder, rf_model_list = load_randomforest(folders)
     else:  # Asks the user for the hyperparametertuning and validation-method
         method_number = user_validation_method_query()
         question = 'Do you want to use the default model-parameters [y] or custome model-parameters [n]?'
@@ -1460,11 +1460,11 @@ def model_call(df_train, df_test, classes_label, folders):
             # Grid-search
             if method_number == 1:
                 print('Using Grid-Search with default parameters')
-                RandomForest_model = RF_grid_validation(x_train, x_test, y_train, y_test)
+                randomforest_model = rf_gridsearch_validation(x_train, x_test, y_train, y_test)
             # Random-search
             elif method_number == 2:
                 print('Using Random-Search with default parameters')
-                RandomForest_model = RF_randomsearch_validation(x_train, x_test, y_train, y_test)
+                randomforest_model = rf_randomsearch_validation(x_train, x_test, y_train, y_test)
         # Customized parameters
         else:
             # Grid-search
@@ -1473,7 +1473,7 @@ def model_call(df_train, df_test, classes_label, folders):
                 # Ask for hyperparameter-settings
                 n_depth = user_multi_parameter('n_depth')  # Ask for the depth as array
                 n_estimators = user_multi_parameter('n_estimators')  # Ask for the estimators as array
-                RandomForest_model = RF_grid_validation(x_train, x_test, y_train, y_test, n_depth, n_estimators)
+                randomforest_model = rf_gridsearch_validation(x_train, x_test, y_train, y_test, n_depth, n_estimators)
             # Random-search
             elif method_number == 2:
                 print('Using Random-Search with custom parameters')
@@ -1484,24 +1484,24 @@ def model_call(df_train, df_test, classes_label, folders):
                 min_estimators = user_single_parameter('min_estimators', None)  # Min range n-estimators
                 max_estimators = user_single_parameter('max_estimators', None)  # Max range n-estimators
                 num_estimators = user_single_parameter('num_estimators', None)  # N-equal steps n-estimators
-                RandomForest_model = RF_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth,
+                randomforest_model = rf_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth,
                                                                 max_depth, num_depth, min_estimators,
                                                                 max_estimators, num_estimators)
         # Save the randomforest model
-        rf_folder = export_RandomForest(RandomForest_model, method_number, folders)
+        rf_folder = export_randomforest(randomforest_model, method_number, folders)
     # Create confusion matrix
-    accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, method_number, rf_folder)
+    accuracy_accessment(randomforest_model, x_test, y_test, classes_label, method_number, rf_folder)
 
-    return RandomForest_model, method_number, rf_folder
+    return randomforest_model, method_number, rf_folder
 
 
-def accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, method_number, rf_folder):
+def accuracy_accessment(randomforest_model, x_test, y_test, classes_label, method_number, rf_folder):
     """
     Function to create and plot the confusion matrix with numerical-measures.
 
     Parameters
     ----------
-    RandomForest_model: sklearn.ensemble.RandomForestClassifier
+    randomforest_model: sklearn.ensemble.RandomForestClassifier
         randomforest classifier (grid- or random-search)
     x_test: numpy.ndarray
         test-dataset containing only the sentinel-1-values
@@ -1521,23 +1521,23 @@ def accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, metho
     # Progressbar
     print('[' + '#' * 50 + '_' * 20 + ']')
     print('Evaluating randomforest-model...')
-    RandomForest_prediction = RandomForest_model.predict(x_test)  # Use the fitted model on the test-dataset
+    randomforest_prediction = randomforest_model.predict(x_test)  # Use the fitted model on the test-dataset
     # Fetch numerical-measures and calculate confusion matrix
     validation_method = method_int_to_str(method_number)
-    best_parameters = RandomForest_model.best_params_  # Hyperparameter-setting
-    RandomForest_accuracy = metrics.accuracy_score(y_test, RandomForest_prediction)  # Model accuracy
-    kappa = metrics.cohen_kappa_score(y_test, RandomForest_prediction)  # Kappa coef.
-    best_std = RandomForest_model.cv_results_['std_test_score'][RandomForest_model.best_index_]  # Standard deviation
-    best_score = RandomForest_model.cv_results_['mean_test_score'][RandomForest_model.best_index_]  # Model score
+    best_parameters = randomforest_model.best_params_  # Hyperparameter-setting
+    randomforest_accuracy = metrics.accuracy_score(y_test, randomforest_prediction)  # Model accuracy
+    kappa = metrics.cohen_kappa_score(y_test, randomforest_prediction)  # Kappa coef.
+    best_std = randomforest_model.cv_results_['std_test_score'][randomforest_model.best_index_]  # Standard deviation
+    best_score = randomforest_model.cv_results_['mean_test_score'][randomforest_model.best_index_]  # Model score
 
     # To plot relative and absolute cell-values, absolute and relative confusion matrix is needed
     # Confusion matrix absolute
-    RandomForest_confusion_matrix_abs = metrics.confusion_matrix(y_test, RandomForest_prediction)
+    randomforest_confusion_matrix_abs = metrics.confusion_matrix(y_test, randomforest_prediction)
     # Confusion matrix relative
-    RandomForest_confusion_matrix_rel = metrics.confusion_matrix(y_test, RandomForest_prediction, normalize='pred')
+    randomforest_confusion_matrix_rel = metrics.confusion_matrix(y_test, randomforest_prediction, normalize='pred')
     # Create relative and absolute dataframes
-    rel_data = pd.DataFrame(RandomForest_confusion_matrix_rel, columns=classes_label, index=classes_label)
-    abs_data = pd.DataFrame(RandomForest_confusion_matrix_abs, columns=classes_label, index=classes_label)
+    rel_data = pd.DataFrame(randomforest_confusion_matrix_rel, columns=classes_label, index=classes_label)
+    abs_data = pd.DataFrame(randomforest_confusion_matrix_abs, columns=classes_label, index=classes_label)
 
     # Add the sums of rows and columns
     abs_data['sum_predicted'] = abs_data.sum(axis=1)
@@ -1550,7 +1550,7 @@ def accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, metho
     # Calculate the producers and users acc.
     rel_data['Producers accuracy'] = (abs_data['diagonal_sum'] / abs_data['sum_predicted'])
     rel_data.loc['Users accuracy'] = (abs_data.loc['diagonal_sum'] / abs_data.loc['sum_observed'])
-    rel_data.loc['Users accuracy']['Producers accuracy'] = RandomForest_accuracy
+    rel_data.loc['Users accuracy']['Producers accuracy'] = randomforest_accuracy
     rel_data.loc['Users accuracy'] = rel_data.loc['Users accuracy']
     rel_data = round(rel_data * 100, 2)
     abs_data.drop('diagonal_sum', inplace=True)
@@ -1595,7 +1595,7 @@ def accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, metho
     ax.text(x_offset, 1.8, '- method: 10-fold Cross-Validation', size=16)
     ax.text(x_offset, 2, '- best score: {}'.format(round(best_score, 2)), size=16)
     ax.text(x_offset, 2.2, '- standard deviation: {}'.format(round(best_std, 2)), size=16)
-    ax.text(x_offset, 2.4, '- overall accuracy: {}'.format(round(RandomForest_accuracy, 2)), size=16)
+    ax.text(x_offset, 2.4, '- overall accuracy: {}'.format(round(randomforest_accuracy, 2)), size=16)
     ax.text(x_offset, 2.6, '- cohen`s kappa coefficient: {}'.format(round(kappa, 2)), size=16)
     # Add borders to the plot
     ax.spines["bottom"].set_visible(True)
@@ -1607,7 +1607,7 @@ def accuracy_accessment(RandomForest_model, x_test, y_test, classes_label, metho
                                                           best_parameters['n_estimators']), bbox_inches='tight',dpi=400)
 
 
-def WetCopRF(foldername, workspace, origin_wetland, origin_wetland_color, origin_sentinel):
+def wetCopRF(foldername, workspace, origin_wetland, origin_wetland_color, origin_sentinel):
     """
     Main function for randomforest classification of Sentinel-1 radardata with Copernicus Wetland Highresolution product as reference.
 
@@ -1645,19 +1645,19 @@ def WetCopRF(foldername, workspace, origin_wetland, origin_wetland_color, origin
     # Dataprocessing
     df, df_train, df_test = check_df_train_test(classes, folders, s1_stack_changed)
     # ----------------------------------------------------------------------------
-    # Randomforest classification
+    # randomforest classification
     question = 'Are you satisfied with the results and want to proceed?'
     repeat_classification = False
     while repeat_classification == False:
-        RandomForest_model, method_number,rf_folder = model_call(df_train, df_test, classes_label,folders)
+        randomforest_model, method_number,rf_folder = model_call(df_train, df_test, classes_label,folders)
         # Progressbar
         print('[' + '#' * 60 + '_' * 10 + ']')
         print('Exporting predicted image...')
         print('-' * 70)
         # ----------------------------------n------------------------------------------
         # Save classification results
-        predict_image(df, RandomForest_model, color_list, method_number, rf_folder, folders)
-        predict_image_masked(df_train, df_test, df, RandomForest_model, color_list, method_number, rf_folder, folders)
+        predict_image(df, randomforest_model, color_list, method_number, rf_folder, folders)
+        predict_image_masked(df_train, df_test, df, randomforest_model, color_list, method_number, rf_folder, folders)
         # Progressbar
         print('[' + '#' * 65 + '_' * 5 + ']')
         # ----------------------------------------------------------------------------
