@@ -1019,7 +1019,7 @@ def rf_gridsearch_validation(x_train, x_test, y_train, y_test, n_depth=[2], n_es
     print('Hyperparameters: max_depth:', n_depth,
           ', n_estimators:', n_estimators)
     # Initialise rf-classifier
-    base_model = ensemble.randomforestClassifier(class_weight='balanced',
+    base_model = ensemble.RandomForestClassifier(class_weight='balanced',
                                                  random_state=42)  # Instantiate the grid search model
     randomforest_model = GridSearchCV(estimator=base_model,
                                       param_grid=param_grid,
@@ -1085,7 +1085,7 @@ def rf_randomsearch_validation(x_train, x_test, y_train, y_test, min_depth=[2], 
     print('Hyperparameters: max_depth:', max_depth,
           ', n_estimators:', n_estimators)
     # Initialise rf-classifier
-    rf = ensemble.randomforestClassifier(class_weight='balanced')
+    rf = ensemble.RandomForestClassifier(class_weight='balanced')
     randomforest_model = RandomizedSearchCV(estimator=rf,
                                             param_distributions=random_grid,
                                             n_iter=2,
