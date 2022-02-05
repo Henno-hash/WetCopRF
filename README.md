@@ -1,4 +1,4 @@
-# WetCopRF
+# wetCopRF
 
 * Package for randomforest classification of Sentinel-1 radardata with Copernicus Wetland Highresolution product as reference. 
 * Creates project folderstructure and imports the necessary  input data. 
