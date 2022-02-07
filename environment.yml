@@ -1,4 +1,4 @@
-name: WetCopRF
+name: wetCopRF
 channels:
   - conda-forge
   - anaconda
