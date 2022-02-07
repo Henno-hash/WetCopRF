@@ -1,4 +1,4 @@
-from wetCopRF.py import *
+import utils
 if __name__ == "__main__":
     # Client
     # Please set your workspace location (Requires at least twice the free space of the input data)
