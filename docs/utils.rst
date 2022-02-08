@@ -1,13 +1,13 @@
-utils package
+wetCopRF package
 =============
 
 Submodules
 ----------
 
-utils.module module
+wetCopRF.module module
 -------------------
 
-.. automodule:: utils.module
+.. automodule:: wetCopRF.module
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ utils.module module
 Module contents
 ---------------
 
-.. automodule:: utils
+.. automodule:: wetCopRF
    :members:
    :undoc-members:
    :show-inheritance:
