@@ -1,4 +1,3 @@
-alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
 argon2-cffi @ file:///C:/ci/argon2-cffi_1613037959010/work
 async-generator @ file:///home/ktietz/src/ci/async_generator_1611927993394/work
 atomicwrites==1.4.0
