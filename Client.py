@@ -1,4 +1,4 @@
-import utils
+import wetCopRF
 if __name__ == "__main__":
     # Client
     # Please set your workspace location (Requires at least twice the free space of the input data)
@@ -13,4 +13,4 @@ if __name__ == "__main__":
     # Please set your path to the symbology folder of the origin Wetland HRES Copernicus data
     origin_wetland_color = r"....\Symbology"
     # Call the main function
-    utils.wetCopRF(foldername, workspace, origin_wetland, origin_wetland_color, origin_sentinel)
+    wetCopRF.wetCopRF(foldername, workspace, origin_wetland, origin_wetland_color, origin_sentinel)
