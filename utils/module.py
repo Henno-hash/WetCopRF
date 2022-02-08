@@ -1,4 +1,4 @@
-# utils.py
+# module.py
 # ----------------------------------------------------------------------------------------------------------------------
 # authors: Florian Hellwig & Henrik Schmidt
 # date: 28.02.2022
@@ -40,12 +40,12 @@ def user_yes_no_query(question):
     Asks Yes/No Question to user and returns bool.
 
     Parameters
-    -----
+    ----------
     question: str
         dialog text for the asked question
 
     Returns
-    -----
+    -------
     bool
         true for y, false for n
     """
@@ -66,14 +66,14 @@ def create_project_structure(foldername, workspace):
     Create the project folder structure.
 
     Parameters
-    -----
+    ----------
     foldername: str
         name of the parent project folder
     workspace: str
         path to the project workspace
 
     Return
-    -----
+    ------
     folders: list
         list of paths to the project subfolders in the workspace
     """
@@ -102,14 +102,14 @@ def check_project_structure(foldername, workspace):
     If not create it or ask the user for another name or reuse the existing structure.
 
     Parameters
-    -----
+    ----------
         foldername: str
             name of the parent project folder
         workspace: str
             path to the project workspace
 
     Return
-    -----
+    ------
     folders: list
         list of paths to the project subfolders in the workspace
     """
@@ -343,15 +343,16 @@ def Sentinel_stack(folders):
 def merge(ds_list, ds_merge_name):
     """
     Merges every dataset in ds_list to one dataset and save it.
-    -----
+
     Parameters
+    ----------
         ds_list: list
             list of paths to the datasets
         ds_merge_name: str
             name of the merged dataset
-    -----
-    Returns
 
+    Returns
+    -------
     """
     # Create vrt from ds_list
     vrt = gdal.BuildVRT('merge.vrt', ds_list)
@@ -366,7 +367,7 @@ def intersect(ds_list, ds_ref, folders, nan):
     Checks for all datasets from ds_list whether they intersect with ds_ref and returns the names of those that do.
 
     Parameters
-    -----
+    ----------
         ds_list: list
             list of paths to the datasets
         ds_ref: object
@@ -377,7 +378,7 @@ def intersect(ds_list, ds_ref, folders, nan):
             explicite value for NaN, e.g. 255
 
     Returns
-    -----
+    -------
         ds_list_intersect: list
             list of paths to the datasets that intersect with ds_ref
     """
@@ -431,7 +432,7 @@ def reproject_resample(ds_in, ds_ref, ds_out_name):
     Adjusts the projection from ds_in to ds_ref and resamples to equal resolution.
 
     Parameters
-    -----
+    ----------
         ds_in: str
             path to merged reference image (not reprojected)
         ds_ref: object
@@ -440,7 +441,7 @@ def reproject_resample(ds_in, ds_ref, ds_out_name):
             name of the reprojected dataset
 
     Returns
-    -----
+    -------
         ds_out: object
             reprojected image (gdal object)
     """
