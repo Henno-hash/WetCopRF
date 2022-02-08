@@ -10,10 +10,10 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-#import os
-#import sys
-#sys.path.insert(0, '..')
-#sys.path.insert(0, '...')
+import os
+import sys
+sys.path.insert(0, '..\\utils')
+sys.path.insert(0, '...')
 #sys.path.insert(0, os.path.join(os.path.abspath('..'), 'utils'))
 #sys.path.insert(0,os.path.abspath('..'))
 #__location__ = os.path.dirname(__file__)
