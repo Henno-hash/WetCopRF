@@ -17,7 +17,12 @@ conda env create -f environment.yml
 * The [Jupyter Notebook] can be used for demonstration purposes.
 
 
+### Documentation:
+* The Documentation can be found [here].
+
+
 [environment.yml]: https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
 
 [Jupyter Notebook]:
 
+[here]: http://wetcoprf.readthedocs.io/
