@@ -12,8 +12,10 @@
 
 import os
 import sys
-sys.path.insert(0, '..\\wetCopRF')
-sys.path.insert(0, '...')
+#sys.path.insert(0, '..\\wetCopRF')
+#sys.path.insert(0, '...')
+sys.path.insert(0,os.path.abspath('..'))
+sys.path.insert(0,os.path.abspath('...'))
 #sys.path.insert(0, os.path.join(os.path.abspath('..'), 'utils'))
 #sys.path.insert(0,os.path.abspath('..'))
 #__location__ = os.path.dirname(__file__)
