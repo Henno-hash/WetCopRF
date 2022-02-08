@@ -1,1 +1,1 @@
-from wetCopRF.module import wetCopRF
+from module import wetCopRF
