@@ -10,7 +10,7 @@ Welcome to 'wetCopRF''s documentation!
    :maxdepth: 4
    :caption: Contents:
 
-   utils
+   wetCopRF
 
 
 Indices and tables
