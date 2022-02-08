@@ -10,15 +10,15 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import os
-import sys
+#import os
+#import sys
 #sys.path.insert(0, '..')
 #sys.path.insert(0, '...')
 #sys.path.insert(0, os.path.join(os.path.abspath('..'), 'utils'))
 #sys.path.insert(0,os.path.abspath('..'))
-__location__ = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(__location__, "../utils"))
-sys.path.insert(0, __location__)
+#__location__ = os.path.dirname(__file__)
+#sys.path.insert(0, os.path.join(__location__, "../utils"))
+#sys.path.insert(0, __location__)
 
 # -- Project information -----------------------------------------------------
 
