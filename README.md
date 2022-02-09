@@ -13,7 +13,7 @@
 conda env create -f environment.yml
 ```
 ### Input-data
-* [Copernicus HighResolution Layers Wetland] extract downloaded zip
+* [Copernicus High Resolution Layers Wetland] extract downloaded zip
 * Sentinel-1 VH,VV radardata in processing level x as tif
 
 ### Demonstration
@@ -29,5 +29,5 @@ conda env create -f environment.yml
 
 [here]: http://wetcoprf.readthedocs.io/
 
-[Copernicus HighResolution Layers Wetland]: https://land.copernicus.eu/pan-european/high-resolution-layers/water-wetness/status-maps
+[Copernicus High Resolution Layers Wetland]: https://land.copernicus.eu/pan-european/high-resolution-layers/water-wetness/status-maps
 
