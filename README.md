@@ -14,7 +14,7 @@ conda env create -f environment.yml
 
 
 ### Demonstration
-* The [Jupyter Notebook] can be used for demonstration purposes. Note: There is an [issue] with notebooks internal links 
+* The [Jupyter Notebook] can be used for demonstration purposes. <br>Note: There is an [issue] with notebooks internal links 
 
 
 ### Documentation:
