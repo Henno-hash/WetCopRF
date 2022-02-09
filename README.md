@@ -23,6 +23,6 @@ conda env create -f environment.yml
 
 [environment.yml]: https://github.com/Henno-hash/WetCopRF/blob/master/environment.yml
 
-[Jupyter Notebook]:
+[Jupyter Notebook]: https://github.com/Henno-hash/wetCopRF/blob/53eef00c7309aecb383e306b71d2d8af0a5925ac/wetCopRF/Showcase.ipynb
 
 [here]: http://wetcoprf.readthedocs.io/
