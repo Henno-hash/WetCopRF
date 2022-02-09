@@ -1,3 +1,4 @@
+[![Documentation Status](https://readthedocs.org/projects/wetcoprf/badge/?version=latest)](https://wetcoprf.readthedocs.io/en/latest/?badge=latest)
 # wetCopRF
 
 * Package for randomforest classification of Sentinel-1 radardata with Copernicus Wetland Highresolution product as reference. 
