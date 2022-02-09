@@ -285,7 +285,7 @@ def copy_wetland_color(origin_path, folders):
     return destination_path_filename
 
 
-def Sentinel_stack(folders):
+def sentinel_stack(folders):
     """
     Convert Sentinel-1 tifs to space-time-datacube.
 
@@ -582,7 +582,7 @@ def datastack_creation(folders):
     print("Preprocessing s1_stack...")
     print('-' * 60)
     # Create the sentinel-1 stack
-    s1_stack, metadata_stack = Sentinel_stack(folders)
+    s1_stack, metadata_stack = sentinel_stack(folders)
     # Reference preprocessing (merge, resample, reproject)
     ds_wetland = ref_preprocessing(folders)
     # Merge Sentinel-1 stack and reference in one dataframe
