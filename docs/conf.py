@@ -10,9 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, 'F:\\UNI\\GEO419b_Abschlussprojekt\\0_Abgabe\\wetCopRF')
+import os
+import sys
+sys.path.insert(0, '..\\wetCopRF')
 
 
 # -- Project information -----------------------------------------------------
