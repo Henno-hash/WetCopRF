@@ -1,7 +1,7 @@
 [![Documentation Status](https://readthedocs.org/projects/wetcoprf/badge/?version=latest)](https://wetcoprf.readthedocs.io/en/latest/?badge=latest)
 # wetCopRF
 
-* Package for randomforest classification of Sentinel-1 radardata with Copernicus Wetland Highresolution product as reference. 
+* Userfriendly Package for randomforest classification of Sentinel-1 radardata with Copernicus Wetland Highresolution product as reference. 
 * Creates project folderstructure and imports the necessary  input data. <br>(Keep in mind: The workspace requires approximatly twice as much free space on the harddrive as the input data.)
 * Prepares the data for randomforest classification and splits the data in train and test samples.
 * The users can choose between two different validation- and hyperparametertuning methods (random- and grid-search) with 10-folds Cross-Validation. 
