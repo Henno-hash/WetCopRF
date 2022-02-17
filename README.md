@@ -14,7 +14,7 @@ conda env create -f environment.yml
 ```
 ### Input-data
 * [Copernicus High Resolution Layers Wetland] extract downloaded zip
-* Sentinel-1 VH,VV radardata in processing level x as tif
+* Sentinel-1 VH,VV radardata as tif
 
 ### Demonstration
 * The [Jupyter Notebook] can be used for demonstration purposes. <br>*Note: There is an issue with notebooks internal links on github so they can only be used locally.*
