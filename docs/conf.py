@@ -12,8 +12,8 @@
 #
 import os
 import sys
-sys.path.insert(0, ('.'))
-sys.path.insert(0, ('.\\wetCopRF'))
+sys.path.append(os.path.abspath('..'))
+sys.path.append(os.path.abspath('..\\wetCopRF'))
 
 # -- Project information -----------------------------------------------------
 
