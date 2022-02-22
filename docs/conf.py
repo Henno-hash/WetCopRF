@@ -10,10 +10,10 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.append(os.path.abspath('..'))
-sys.path.append(os.path.abspath('..\wetCopRF'))
+#import os
+#import sys
+#sys.path.append(os.path.abspath('..'))
+#sys.path.append(os.path.abspath('..\wetCopRF'))
 
 # -- Project information -----------------------------------------------------
 
